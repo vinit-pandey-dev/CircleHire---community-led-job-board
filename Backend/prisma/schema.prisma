@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             Int                 @id @default(autoincrement())
+  name           String
+  email          String             @unique
+  password       String
+  role           Role
+  college        String?
+  graduationYear Int?
+  techStack      String[]
+  linkedIn       String?
+  resumeUrl      String?
+  bio            String?
+  createdAt      DateTime           @default(now())
+
+  jobs              Job[]              @relation("PostedJobs")
+  referralRequests  ReferralRequest[]
+  companyReviews    CompanyReview[]
+  sentMessages      Message[]          @relation("SentMessages")
+  receivedMessages  Message[]          @relation("ReceivedMessages")
+}
+
+model Job {
+  id                Int       @id @default(autoincrement())
+  title             String
+  company           String
+  location          String
+  jobType           JobType
+  tags              String[]
+  description       String
+  applyLink         String
+  referralAvailable Boolean
+  referralContact   String?
+  createdAt         DateTime  @default(now())
+
+  postedBy          User      @relation("PostedJobs", fields: [postedById], references: [id])
+  postedById        Int
+}
+
+model ReferralRequest {
+  id         Int      @id @default(autoincrement())
+  company    String
+  role       String
+  message    String
+  resumeUrl  String
+  linkedIn   String
+  status     ReferralStatus
+  createdAt  DateTime @default(now())
+
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+}
+
+model CompanyReview {
+  id            Int      @id @default(autoincrement())
+  company       String
+  role          String
+  experience    String
+  difficulty    Difficulty
+  offerReceived Boolean
+  rating        Int
+  createdAt     DateTime @default(now())
+
+  user          User     @relation(fields: [userId], references: [id])
+  userId        Int
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  content    String
+  timestamp  DateTime @default(now())
+
+  sender     User     @relation("SentMessages", fields: [senderId], references: [id])
+  senderId   Int
+
+  receiver   User     @relation("ReceivedMessages", fields: [receiverId], references: [id])
+  receiverId Int
+}
+
+// Enums
+
+enum Role {
+  student
+  professional
+}
+
+enum JobType {
+  FullTime
+  Internship
+  Remote
+  Hybrid
+  Onsite
+}
+
+enum ReferralStatus {
+  open
+  closed
+  fulfilled
+}
+
+enum Difficulty {
+  Easy
+  Medium
+  Hard
+}
