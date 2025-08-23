@@ -24,10 +24,8 @@ exports.register = async (req, res) => {
     if (existingUser)
       return res.status(400).json({ msg: "User already exists" });
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create user
 const user = await prisma.user.create({
   data: {
     name,
@@ -49,8 +47,6 @@ const user = await prisma.user.create({
     res.status(500).json({ msg: err.message });
   }
 };
-
-
 
 
 exports.login = async (req, res) => {
@@ -76,4 +72,49 @@ exports.login = async (req, res) => {
 exports.logout = async (req, res) => {
   // For JWT, logout is client-side (delete token on frontend)
   res.status(200).json({ msg: "Logout successful (client-side token removal)" });
+};
+
+exports.getUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Prisma requires number type for Int fields
+    const user = await prisma.user.findUnique({
+      where: { id: parseInt(id, 10) },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        bio: true,
+        linkedIn: true,
+        techStack: true,
+        college: true,
+        graduationYear: true,
+        resumeUrl: true,
+        createdAt: true
+      }
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
+exports.getCurrentUser = async (req, res) => {
+  try {
+    const user = req.user;
+    if (!user) return res.status(401).json({ message: 'Not authenticated' });
+
+    res.status(200).json({ user });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to fetch user', error: err.message });
+  }
 };

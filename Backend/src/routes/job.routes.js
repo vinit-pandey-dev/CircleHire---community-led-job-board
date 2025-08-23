@@ -12,11 +12,8 @@ const {
 
 const router = express.Router();
 
-// Only PROFESSIONAL can post a job
-router.post('/', protect, isProfessional, createJob);
-
-// Public routes
-router.get('/', getAllJobs);
+router.post('/postjob', protect, isProfessional, createJob);
+router.get('/getJobs', protect, getAllJobs);
 router.get('/:id', getJobById);
 
 module.exports = router;

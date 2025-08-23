@@ -4,14 +4,16 @@ const router = express.Router();
 const {
   createReferral,
   getAllReferrals,
-  updateReferralStatus
+  updateReferralStatus,
+  getStudentReferrals
 } = require('../controllers/referral.controller');
 
 const { protect, isAuthenticated, isProfessional } = require('../middlewares/auth.middleware');
 
-router.post('/', protect, isAuthenticated, createReferral);
+router.post('/create', protect, isAuthenticated, createReferral);
 
-router.get('/', protect, isAuthenticated, isProfessional, getAllReferrals);
+router.get('/getReferrals', protect, isAuthenticated, isProfessional, getAllReferrals);
 router.patch('/:id', protect, isAuthenticated, isProfessional, updateReferralStatus);
+router.get('/student/:studentId',protect, getStudentReferrals);
 
 module.exports = router;

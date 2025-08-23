@@ -5,19 +5,23 @@ const cors = require("cors");
 const authRoutes = require("./src/routes/auth.routes");
 const jobRoutes = require("./src/routes/job.routes");
 const referralRoutes = require('./src/routes/referral.routes');
-//const reviewRoutes = require("./src/routes/reviews");
-
+const messageRoutes = require('./src/routes/message.routes');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true,
+  methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
-app.use('/api/jobs', jobRoutes);
+app.use('/api', jobRoutes);
 app.use('/api/referrals', referralRoutes);
-// app.use("/api/reviews", reviewRoutes);
-
+app.use('/api/messages', messageRoutes);
 app.get("/", (req, res) => {
   res.send("CircleHire API is running");
 });
