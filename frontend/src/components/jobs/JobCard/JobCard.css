@@ -1,0 +1,148 @@
+/* Card Container */
+.job-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensures cards in a grid are same height */
+  box-sizing: border-box;
+}
+
+.job-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border-color: #cbd5e1;
+}
+
+/* Header */
+.job-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.job-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+.job-company {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Job Type Badge */
+.job-type-badge {
+  font-size: 0.75rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.job-type-badge.internship { background: #eff6ff; color: #2563eb; }
+.job-type-badge.full-time { background: #f0fdf4; color: #16a34a; }
+.job-type-badge.contract { background: #fff7ed; color: #ea580c; }
+
+/* Meta Info Grid (Icons + Text) */
+.job-meta-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px; /* Row gap, Col gap */
+  margin-bottom: 16px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.meta-icon {
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+/* Description */
+.job-description {
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  flex-grow: 1; /* Pushes buttons to the bottom */
+}
+
+.divider {
+  height: 1px;
+  background: #f1f5f9;
+  margin: 8px 0 16px 0;
+}
+
+/* Actions Footer */
+.job-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+/* Buttons */
+.btn-details {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #475569;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.btn-details:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: #1e293b;
+}
+
+.btn-apply {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  background: #2563eb;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-apply:hover {
+  background: #1d4ed8;
+}
+
+.btn-icon {
+  font-size: 1.1rem;
+}

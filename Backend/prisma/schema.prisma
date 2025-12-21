@@ -20,7 +20,7 @@ model User {
   resumeUrl      String?
   bio            String?
   createdAt      DateTime           @default(now())
-
+  
   jobs              Job[]              @relation("PostedJobs")
   referralRequests  ReferralRequest[]
   companyReviews    CompanyReview[]
@@ -85,8 +85,6 @@ model Message {
   receiver   User     @relation("ReceivedMessages", fields: [receiverId], references: [id])
   receiverId Int
 }
-
-// Enums
 
 enum Role {
   student

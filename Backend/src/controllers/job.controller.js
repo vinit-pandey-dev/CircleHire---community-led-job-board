@@ -43,7 +43,8 @@ exports.createJob = async (req, res) => {
         company,
         location,
         jobType: normalizedJobType,
-        tags,
+        tags: typeof tags === 'string' ? tags.split(',').map(t => t.trim()) : tags, 
+        description,
         description,
         applyLink,
         referralAvailable,
@@ -65,30 +66,28 @@ exports.createJob = async (req, res) => {
   }
 };
 
+// Backend/src/controllers/job.controller.js
+
 exports.getAllJobs = async (req, res) => {
   try {
     const jobs = await prisma.job.findMany({
+      orderBy: { createdAt: 'desc' }, // Optional: Show newest first
       include: {
-        postedBy: { select: { id: true, name: true, email: true } }
-      },
-      orderBy: { createdAt: 'desc' },
+        postedBy: {
+          select: {
+            id: true,
+            name: true,
+            email: true
+          }
+        }
+      }
     });
-
-    res.set('Cache-Control', 'no-store'); // disable caching in dev
-
-    if (!jobs.length) {
-      return res.status(404).json({ message: 'No jobs found' });
-    }
-
     res.status(200).json(jobs);
   } catch (err) {
-    res.status(500).json({ 
-      error: 'Failed to fetch jobs', 
-      details: err.message 
-    });
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch jobs' });
   }
 };
-
 
 exports.getJobById = async (req, res) => {
   try {

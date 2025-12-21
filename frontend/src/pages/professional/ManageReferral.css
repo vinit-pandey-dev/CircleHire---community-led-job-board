@@ -1,0 +1,116 @@
+.manage-referrals-page {
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  padding: 30px 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.page-title {
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.referral-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Card Styling */
+.referral-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  border-left: 5px solid #ccc;
+}
+
+/* Status Colors */
+.status-open { border-left-color: #f39c12; }
+.status-fulfilled { border-left-color: #2ecc71; } /* Green */
+.status-rejected { border-left-color: #e74c3c; } /* Red */
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.role-text {
+  color: #555;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.status-badge.open { background: #fff3e0; color: #e67e22; }
+.status-badge.fulfilled { background: #e8f5e9; color: #27ae60; }
+.status-badge.rejected { background: #ffebee; color: #c0392b; }
+
+.message {
+  font-style: italic;
+  color: #666;
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.links {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.link-btn {
+  text-decoration: none;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.linkedin { color: #0077b5; border-color: #0077b5; }
+.resume { color: #333; border-color: #333; }
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.btn-accept {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-reject {
+  background-color: white;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-accept:hover { background-color: #219150; }
+.btn-reject:hover { background-color: #ffebee; }

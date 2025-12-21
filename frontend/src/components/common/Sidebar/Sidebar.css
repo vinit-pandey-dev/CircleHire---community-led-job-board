@@ -1,0 +1,103 @@
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #1e293b;
+  color: white;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebar-header h2 {
+  color: #38bdf8;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.sidebar-links {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-links li {
+  margin-bottom: 10px;
+}
+
+.sidebar-links a {
+  display: block;
+  color: #cbd5e1;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.sidebar-links a:hover, .sidebar-links a.active {
+  background: #334155;
+  color: white;
+}
+
+.divider {
+  height: 1px;
+  background: #475569;
+  margin: 15px 0;
+}
+
+.logout-btn {
+  width: 100%;
+  background: #ef4444;
+  border: none;
+  padding: 10px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+/* FORCE the link to be a Flex container */
+.sidebar-links a {
+  display: flex !important;       /* !important forces it to override other styles */
+  align-items: center !important; /* Vertically centers the items */
+  flex-direction: row;            /* Ensures side-by-side layout */
+  gap: 12px;                      /* Space between icon and text */
+  
+  /* Rest of your styling */
+  color: #cbd5e1;
+  text-decoration: none;
+  padding: 12px 15px;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  line-height: 1;                 /* Resets line height to prevent weird spacing */
+}
+
+/* Ensure the icon itself behaves nicely */
+.icon {
+  font-size: 1.2rem;
+  display: flex;        /* Helps remove extra space below SVG */
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;      /* Ensures icon has a fixed width so text aligns perfectly */
+}
+
+/* Fix the logout button similarly */
+.logout-btn {
+  display: flex !important;
+  align-items: center !important;
+  flex-direction: row;
+  justify-content: flex-start; /* Aligns content to the left like links */
+  gap: 12px;
+  
+  /* Rest of styling */
+  width: 100%;
+  background: #ef4444;
+  border: none;
+  padding: 12px 15px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: auto;
+  font-weight: 600;
+  line-height: 1;
+}
