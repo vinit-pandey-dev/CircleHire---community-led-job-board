@@ -11,7 +11,7 @@ const messageRoutes = require('./src/routes/message.routes');
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: '*',
   credentials: true,
   methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
