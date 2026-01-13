@@ -8,12 +8,11 @@ const PostJob = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // Updated state to match your job.controller.js
   const [formData, setFormData] = useState({
     title: '',
     company: '',
     location: '',
-    jobType: 'fulltime', // Default to lowercase to match your backend map
+    jobType: 'fulltime',
     description: '',
     applyLink: '',       // New field
     tags: '',           // New field (comma separated)
